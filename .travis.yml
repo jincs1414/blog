@@ -11,4 +11,4 @@ addons:
   ssh_known_hosts:
   - 47.74.244.91
 after_success:
-  - ssh deploy@47.74.244.91 -o StrictHostKeyChecking=no 'cd  && ./deploy'
+  - ssh deploy@47.74.244.91 -o StrictHostKeyChecking=no 'cd  ~&& nohup ./deploy> myout.log 2>&1 &'
