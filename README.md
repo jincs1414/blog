@@ -1,3 +1,5 @@
+###[我自己的博客](http://jincs.me)
+
 [![Build Status](https://travis-ci.org/jincs1414/blog.svg?branch=master)](https://travis-ci.org/jincs1414/blog)
 
 test
