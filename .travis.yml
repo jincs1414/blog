@@ -9,6 +9,6 @@ before_install:
 
 addons:
   ssh_known_hosts:
-  - 47.74.244.91
+  - $ip
 after_success:
-  - ssh deploy@47.74.244.91 -o StrictHostKeyChecking=no 'cd  ~&& ./deploy '
+  - ssh deploy@$ip -o StrictHostKeyChecking=no 'cd  ~&& ./deploy '
