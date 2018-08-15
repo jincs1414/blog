@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>主页</title>
+    <link th:href="@{/bootstrap/4.1.1/css/bootstrap.css}" rel="stylesheet">
+    <meta charset="utf-8">
+</head>
+<body>
+<div class="article-container container">
+    <form th:action="@{postArticle}" method='POST'>
+        标题:<br>
+        <input type="text" name="title">
+        <br>
+        内容:<br>
+        <input type="text" name="context">
+        <input type="submit" value="提交"/>
+    </form>
+</div>
+</body>
+
+<script>
+</script>
+</html>
