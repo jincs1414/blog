@@ -5,9 +5,8 @@
     <link th:href="@{/bootstrap/4.1.1/css/bootstrap.css}" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar">
-    <p>这是一个导航栏</p>
-</nav>
+<div th:insert="~{homePage/nav :: copy}"></div>
+
 <!--文章列表-->
 <div class="article-container container">
     <div class="article-item" th:each="article : ${articleList}">

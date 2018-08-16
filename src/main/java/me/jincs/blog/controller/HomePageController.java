@@ -1,6 +1,8 @@
 package me.jincs.blog.controller;
 
 import me.jincs.blog.domain.ArticleDomain;
+import me.jincs.blog.repository.ArticleRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +12,9 @@ import java.util.List;
 
 @Controller
 public class HomePageController {
+
+    @Autowired
+    private ArticleRepository articleRepository;
 
     @RequestMapping({"/index", "/"})
     public String index(Model model) {
@@ -39,6 +44,9 @@ public class HomePageController {
         articleList.add(articleDomain);
         articleList.add(articleDomain2);
         articleList.add(articleDomain3);
+
+        List dbArticle = articleRepository.findAll();
+        articleList.addAll(dbArticle);
         return articleList;
     }
 }
