@@ -10,3 +10,12 @@ https://www.jianshu.com/p/c6ceab775774
 
 from 表单提交
 https://www.cnblogs.com/web-wjg/p/7894657.html
+
+MetaWeblog
+将博文推送多个博客（cnblog、oschina、自建博客）
+Apache XML RPC
+
+集成多个图床服务
+
+Jsoup
+

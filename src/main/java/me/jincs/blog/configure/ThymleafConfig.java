@@ -13,8 +13,10 @@ import java.util.Map;
 
 @Configuration
 public class ThymleafConfig {
-    @Value("${thymeleaf.cdn.prefix:}")
-    private String cdnPrefix;
+    @Value("${thymeleaf.cdn.thirdParty.prefix:}")
+    private String cdnThirdPartyPrefix;
+    @Value("${thymeleaf.cdn.selfParty.prefix:}")
+    private String cdnSelfPartyPrefix;
 
     @Autowired
     public ThymleafConfig(SpringTemplateEngine templateEngine) {
@@ -23,7 +25,7 @@ public class ThymleafConfig {
 
     public class CdnLinkBuilder implements ILinkBuilder {
         private ILinkBuilder standardLinkBuilder = new StandardLinkBuilder();
-        private String[] suffixArray = {".js", ".css"};
+        private String[] suffixArray = {".js", ".css", "png"};
         @Override
         public String getName() {
             return "cdn builder";
@@ -36,8 +38,15 @@ public class ThymleafConfig {
 
         @Override
         public String buildLink(IExpressionContext iExpressionContext, String s, Map<String, Object> map) {
-            if (!StringUtils.isEmpty(cdnPrefix) && isHandingType(s)) {
-                return cdnPrefix + s;
+            if (isHandingType(s)) {
+                if (!StringUtils.isEmpty(cdnSelfPartyPrefix) && s.startsWith("/selfParty")) {
+                    s = s.replace("/selfParty", "");
+                    return cdnSelfPartyPrefix + s;
+                }
+                if (!StringUtils.isEmpty(cdnThirdPartyPrefix) && s.startsWith("/thirdParty")) {
+                    s = s.replace("/thirdParty", "");
+                    return cdnThirdPartyPrefix + s;
+                }
             }
             return standardLinkBuilder.buildLink(iExpressionContext, s, map);
         }

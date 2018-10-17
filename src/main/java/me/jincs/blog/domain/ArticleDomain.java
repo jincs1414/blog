@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 @Table(name = "article")
@@ -56,5 +58,13 @@ public class ArticleDomain implements Serializable {
                 ", context='" + context + '\'' +
                 ", id=" + id +
                 '}';
+    }
+
+    public Map toMap() {
+        Map map = new HashMap();
+        map.put("url", url);
+        map.put("title", title);
+        map.put("context", context);
+        return map;
     }
 }
