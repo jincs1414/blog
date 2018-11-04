@@ -8,7 +8,9 @@
 <body>
 <div class="article-container container">
     <p th:text="${article.title}"></p>
-    <p th:text="${article.context}"></p>
+    <article th:utext="${article.context}">
+
+    </article>
 </div>
 </body>
 

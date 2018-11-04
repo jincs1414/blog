@@ -19,3 +19,5 @@ Apache XML RPC
 
 Jsoup
 
+https://github.com/summernote/summernote/
+
