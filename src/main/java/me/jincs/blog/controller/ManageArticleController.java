@@ -11,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("manageArticle")
@@ -20,8 +23,9 @@ public class ManageArticleController {
     private ArticleRepository articleRepository;
 
     @GetMapping({"index", "/"})
-    public String index() {
-
+    public String index(Model model) {
+        List dbArticle = articleRepository.findAll();
+        model.addAttribute("articleList", dbArticle);
         return "manageArticle/index";
     }
 
@@ -34,6 +38,13 @@ public class ManageArticleController {
         BlogFactory blogFactory = new BlogFactory();
         blogFactory.post(articleDomain);
         return "manageArticle/article";
+    }
+
+    @GetMapping("getArticle")
+    @ResponseBody
+    public ArticleDomain getArticle(String id) {
+
+        return articleRepository.findById(Long.valueOf(id)).get();
     }
 
 

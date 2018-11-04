@@ -13,17 +13,40 @@
     <meta charset="utf-8">
 </head>
 <body>
-<div class="article-container container">
-    <form th:action="@{postArticle}" method='POST'>
-        标题:<br>
-        <input type="text" name="title">
-        <br>
-        内容:<br>
-        <textarea id="context" name="context"></textarea>
-        <input type="submit" value="提交"/>
 
-    </form>
+<div class="article-container container">
+    <div class="row">
+        <div class="col-md-4">
+            <div id="articleList">
+                <span>文章列表</span>
+                <ul th:each="article:${articleList}">
+                    <li>
+                        <a th:href="${article.url}" th:text="${article.title}"></a>
+                        <button type="button" class="btn btn-primary" th:onclick="'modifyActicle('+${article.id}+')'">
+                            修改
+                        </button>
+                        <button type="button" class="btn btn-info">查看</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div id="postArticle">
+                <form th:action="@{postArticle}" method='POST'>
+                    标题:<br>
+                    <input id="title" type="text" name="title">
+                    <br>
+                    内容:<br>
+                    <textarea id="context" name="context"></textarea>
+                    <input type="submit" value="提交"/>
+
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
+
+
 </body>
 
 <script>
@@ -31,5 +54,14 @@
     $(document).ready(function () {
         $('#context').summernote();
     });
+
+    function modifyActicle(id) {
+        $.get('getArticle', {
+            id: id
+        }, function (article) {
+            $('#title').val(article.title);
+        });
+
+    }
 </script>
 </html>
