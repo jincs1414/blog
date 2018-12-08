@@ -21,11 +21,11 @@
                 <span>文章列表</span>
                 <ul th:each="article:${articleList}">
                     <li>
-                        <a th:href="${article.url}" th:text="${article.title}"></a>
+                        <p th:text="${article.title}"></p>
                         <button type="button" class="btn btn-primary" th:onclick="'modifyActicle('+${article.id}+')'">
                             修改
                         </button>
-                        <button type="button" class="btn btn-info">查看</button>
+                        <a class="btn btn-info" th:href="'/articleController/articleShow?id='+${article.id}">查看</a>
                     </li>
                 </ul>
             </div>
