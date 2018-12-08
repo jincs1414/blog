@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>文章展示</title>
+</head>
+<body>
+
+<article>
+    <header>
+        <p th:text="${article.title}"></p>
+    </header>
+
+    <p th:utext="${article.context}"></p>
+
+</article>
+
+</body>
+</html>
